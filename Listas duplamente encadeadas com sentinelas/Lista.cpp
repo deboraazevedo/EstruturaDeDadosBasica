@@ -400,15 +400,31 @@ Lista LIS_Intercalar(Lista lista1, Lista lista2)
     return listaResultado;
 
 
-
-
+}
 
 
 }
 
 
 
+/*
+	Função que insere um valor na lista mantendo-a orenadada.
+*/
+bool LIS_InserirOrdenado(Lista lista, int v)
+{
+    No prov = lista->cabeca->proximo;
+    int contador = 1;
+    while(v > prov->valor && prov != lista->cauda){
+        prov = prov->proximo;
+        contador ++;
+    }
+    LIS_Inserir(lista, v, contador);
+    return true;
 }
+
+
+
+
 
 /*
     Função que verifica se uma determinda instância da estrutura lista obedece a todas suas invariantes.
