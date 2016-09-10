@@ -22,7 +22,7 @@ void printVector(int v[], int size)
 }
 
 int main(int argc, const char * argv[]) {
-    
+
     // Teste 1: vetor em ordem crescente
     int v1[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}, n1 = 17;
     int pivo1 = v1[n1-1];
@@ -30,9 +30,9 @@ int main(int argc, const char * argv[]) {
 
     assert( v1[iPivo1] == pivo1 );
     assert( isPartitioned(v1, n1, iPivo1) );
-    
+
     printVector(v1, n1);
-    
+
     // Teste 2: vetor em ordem decrescente
     int v2[] = {17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1}, n2 = 17;
     int pivo2 = v2[n2-1];
@@ -40,9 +40,9 @@ int main(int argc, const char * argv[]) {
 
     assert( v2[iPivo2] == pivo2 );
     assert( isPartitioned(v2, n2, iPivo2) );
-    
+
     printVector(v2, n2);
-    
+
     // Teste 1: vetor aleatório
     int v3[] = {0,1,11,2,12,3,13,4,14,5,15,6,16,7,17,8,18,9,19,10}, n3 = 20;
     int pivo3 = v3[n3-1];
@@ -50,9 +50,9 @@ int main(int argc, const char * argv[]) {
 
     assert( v3[iPivo3] == pivo3 );
     assert( isPartitioned(v3, n3, iPivo3) );
-    
+
     printVector(v3, n3);
-    
+
     return 0;
 }
 
@@ -72,7 +72,7 @@ bool isPartitioned(int v[], int size, int iPivot)
             return false;
         }
     }
-    
+
     return true;
 }
 
@@ -84,24 +84,32 @@ bool isPartitioned(int v[], int size, int iPivot)
 
 int partition(int v[], int left, int right)
 {
+
+//Escolha do pivô como o último elemento do vetor
     int pivo = v[right];
 
     int i = left;
     int j = right - 1;
 
+
+//Variáveis auxiliares para troca de valores dos indices v[i], v[j] e v[right]
     int aux;
     int aux_right;
 
     while (j>= i){
 
+//Enquanto v[i] < pivô, quer dizer que v[i] está do lado correto do vetor, devendo o i continuar indo à direita
         while (v[i] < pivo) {
             i++;
         }
 
+//Enquanto v[j] > pivô, quer dizer que v[j] está do lado correto do vetor, devendo o j continuar indo à esquerda
         while (v[j] > pivo){
             j--;
         }
 
+
+//No momento em que se encontram dois números que estejam em lados errados do vetor, faz-se a troca
         if (j >= i){
             aux = v[i];
             v[i] = v[j];
@@ -110,6 +118,7 @@ int partition(int v[], int left, int right)
 
     }
 
+//Depois de realizadas todas as trocas, o pivô é colocado no seu devido lugar
     aux_right = v[i];
     v[i] = v[right];
     v[right] = aux_right;
